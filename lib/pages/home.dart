@@ -52,8 +52,13 @@ class _HomeState extends State<Home> {
         label: const Text('Show my current location',
             style: TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
+                fontSize: 12,
+                color: Colors.white,
                 fontWeight: FontWeight.bold)),
-        icon: const Icon(Icons.location_history),
+        icon: const Icon(
+          Icons.location_history,
+          color: Colors.white,
+        ),
       ),
     );
   }

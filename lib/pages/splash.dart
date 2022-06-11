@@ -13,10 +13,10 @@ class Splash extends StatefulWidget {
 class _SplashState extends State<Splash> {
   @override
   void initState() {
-    Timer(
-        const Duration(seconds: 5),
-        () => Navigator.of(context)
-            .push(MaterialPageRoute(builder: (_) => Onbording())));
+    // Timer(
+    //     const Duration(seconds: 5),
+    //     () => Navigator.of(context)
+    //         .push(MaterialPageRoute(builder: (_) => Onbording())));
     super.initState();
   }
 
@@ -29,35 +29,36 @@ class _SplashState extends State<Splash> {
     //   Navigator.of(context)
     //       .push(MaterialPageRoute(builder: (context) => Onboarding()));
     // });
-    return Container(
-        decoration: BoxDecoration(
-          color: Colors.amber,
-        ),
-        child: Stack(
-          children: [
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [],
+    return Scaffold(
+        body: Container(
+      child: Stack(
+        children: [
+          Container(
+            color: Colors.yellow,
+          ),
+          Positioned.fill(
+            child: Container(color: Colors.black.withOpacity(0.5)),
+          ),
+          Positioned.fill(
+            child: Container(
+              width: 50,
+              alignment: Alignment.center,
+              decoration: BoxDecoration(
+                  image: DecorationImage(
+                      scale: 4.0,
+                      image: AssetImage(
+                        'assets/map.png',
+                      ))),
             ),
-            Padding(
-              padding: const EdgeInsets.only(bottom: 190, top: 70),
-              child: Center(
-                child: Image.asset(
-                  'assets/map.png',
-                  width: MediaQuery.of(context).size.width,
-                ),
-              ),
+          ),
+          Positioned.fill(
+            child: Container(
+              alignment: Alignment.center,
+              child: CircularProgressIndicator(),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 10, top: 0),
-              child: Center(
-                child: CircularProgressIndicator(
-                  color: Colors.white,
-                ),
-              ),
-            )
-          ],
-        ));
+          )
+        ],
+      ),
+    ));
   }
 }

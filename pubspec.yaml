@@ -36,7 +36,12 @@ dependencies:
   geolocator: ^8.2.1
   google_maps_flutter: ^2.1.7
   shared_preferences: ^2.0.13
-  flutter_svg: ^0.19.1
+  flutter_launcher_icons: ^0.9.3
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: assets/map.png
 
 dev_dependencies:
   flutter_test:

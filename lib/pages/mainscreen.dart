@@ -27,10 +27,12 @@ class _MainScreenState extends State<MainScreen> {
             currentIndex: _index,
             selectedLabelStyle: const TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
+                fontSize: 12,
                 fontWeight: FontWeight.w700),
-            selectedItemColor: Colors.red,
+            selectedItemColor: Colors.yellow,
             unselectedLabelStyle: const TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
+                fontSize: 10,
                 fontWeight: FontWeight.w700),
             onTap: (index) {
               setState(() {

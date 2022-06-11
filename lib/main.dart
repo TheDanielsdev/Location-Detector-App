@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 import 'package:location_detector/pages/home.dart';
 import 'package:location_detector/pages/mainscreen.dart';
 import 'package:location_detector/pages/onboarding.dart';
 import 'package:location_detector/pages/settings.dart';
 import 'package:location_detector/pages/splash.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 int? initScreen;
 void main() async {
@@ -21,11 +22,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
+      theme: ThemeData(primaryColor: Colors.yellow, primarySwatch: Colors.yellow
           // primarySwatch: ThemeData(C)
           ),
       debugShowCheckedModeBanner: false,
-      home: Splash(),
+      home: Onbording(),
       // initialRoute:
       //     initScreen == 0 || initScreen == null ? 'onboard_screen' : 'home',
       // routes: {

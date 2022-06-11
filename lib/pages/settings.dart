@@ -18,9 +18,9 @@ class _SettingsState extends State<Settings> {
   IconData _lightIcon = Icons.sunny;
   IconData _darkIcon = Icons.nights_stay;
   ThemeData _light =
-      ThemeData(accentColor: Colors.red, brightness: Brightness.light);
+      ThemeData(accentColor: Colors.yellow, brightness: Brightness.light);
   ThemeData _dark =
-      ThemeData(accentColor: Colors.red, brightness: Brightness.dark);
+      ThemeData(accentColor: Colors.yellow, brightness: Brightness.dark);
   getLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -50,9 +50,9 @@ class _SettingsState extends State<Settings> {
               onPressed: () {
                 Navigator.pop(context);
               },
-              icon: const Icon(
+              icon: Icon(
                 Icons.arrow_back_ios_new,
-                color: Colors.black,
+                color: isChangeTheme ? Colors.white : Colors.black,
               )),
           actions: [
             IconButton(
@@ -63,7 +63,7 @@ class _SettingsState extends State<Settings> {
                 },
                 icon: Icon(
                   isChangeTheme ? _darkIcon : _lightIcon,
-                  color: Colors.black,
+                  color: isChangeTheme ? Colors.white : Colors.black,
                 ))
           ],
         ),
@@ -78,6 +78,7 @@ class _SettingsState extends State<Settings> {
                   child: const Text('Change Settings',
                       style: TextStyle(
                           fontFamily: 'CerebriSansPro-Regular',
+                          fontSize: 15,
                           fontWeight: FontWeight.bold))),
               const SizedBox(
                 height: 20,
@@ -90,18 +91,19 @@ class _SettingsState extends State<Settings> {
                 height: 20,
               ),
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 15),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: ListTile(
                     title: state
-                        ? Text('Read my location',
+                        ? Text('',
                             style: TextStyle(
                                 fontFamily: 'CerebriSansPro-Regular',
-                                fontSize: 15,
-                                color: Colors.black.withOpacity(0.2),
+                                color: Colors.black,
+                                fontSize: 12,
                                 fontWeight: FontWeight.bold))
                         : const Text('Read my location',
                             style: TextStyle(
                                 fontFamily: 'CerebriSansPro-Regular',
+                                fontSize: 12,
                                 fontWeight: FontWeight.bold)),
                     trailing: Wrap(
                       spacing: 0,
@@ -115,6 +117,7 @@ class _SettingsState extends State<Settings> {
                                   ? Text('latitude: $lat',
                                       style: const TextStyle(
                                           fontFamily: 'CerebriSansPro-Regular',
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold))
                                   : const Text(''),
                               const SizedBox(
@@ -124,6 +127,7 @@ class _SettingsState extends State<Settings> {
                                   ? Text('longitude: $long',
                                       style: const TextStyle(
                                           fontFamily: 'CerebriSansPro-Regular',
+                                          fontSize: 12,
                                           fontWeight: FontWeight.bold))
                                   : const Text(''),
                             ],
@@ -148,22 +152,51 @@ class _SettingsState extends State<Settings> {
               const SizedBox(
                 height: 15,
               ),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 20),
+              Padding(
+                padding: EdgeInsets.symmetric(horizontal: 0),
                 child: ListTile(
-                    title: Text('Privacy policy',
+                    onTap: () {},
+                    title: const Text('Privacy policy',
                         style: TextStyle(
                             fontFamily: 'CerebriSansPro-Regular',
+                            fontSize: 12,
                             fontWeight: FontWeight.bold)),
-                    trailing: Icon(Icons.arrow_forward_ios_rounded,
-                        color: Colors.black)),
+                    trailing: Icon(
+                      Icons.arrow_forward_ios_rounded,
+                      size: 12,
+                      color: isChangeTheme ? Colors.white : Colors.black,
+                    )),
               ),
               const Spacer(),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: const Text('Location Detector',
+                    style: TextStyle(
+                        fontFamily: 'CerebriSansPro-Regular',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold)),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               Container(
                 alignment: Alignment.bottomCenter,
                 child: const Text('V1.0',
                     style: TextStyle(
                         fontFamily: 'CerebriSansPro-Regular',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold)),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: const Text('Copyright 2022',
+                    style: TextStyle(
+                        fontFamily: 'CerebriSansPro-Regular',
+                        color: Colors.blueGrey,
+                        fontSize: 12,
                         fontWeight: FontWeight.bold)),
               )
             ],
