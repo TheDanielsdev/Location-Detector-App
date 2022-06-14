@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
           // primarySwatch: ThemeData(C)
           ),
       debugShowCheckedModeBanner: false,
-      home: Onbording(),
+      home: Splash(),
       // initialRoute:
       //     initScreen == 0 || initScreen == null ? 'onboard_screen' : 'home',
       // routes: {

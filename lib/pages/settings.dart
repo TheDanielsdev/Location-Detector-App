@@ -190,6 +190,17 @@ class _SettingsState extends State<Settings> {
               const SizedBox(
                 height: 10,
               ),
+               Container(
+                alignment: Alignment.bottomCenter,
+                child: const Text('TheDaniels Team',
+                    style: TextStyle(
+                        fontFamily: 'CerebriSansPro-Regular',
+                        fontSize: 12,
+                        fontWeight: FontWeight.bold)),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
               Container(
                 alignment: Alignment.bottomCenter,
                 child: const Text('Copyright 2022',
