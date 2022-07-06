@@ -86,7 +86,7 @@ class _HomeState extends State<Home> {
     if (hasInternet == true) {
       showSimpleNotification(
           const Text(
-            'Back online',
+            'Connection established',
             style: TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
                 fontSize: 15,
