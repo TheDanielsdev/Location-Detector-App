@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:location_detector/pages/home.dart';
 
 class Settings extends StatefulWidget {
@@ -18,9 +19,9 @@ class _SettingsState extends State<Settings> {
   IconData _lightIcon = Icons.sunny;
   IconData _darkIcon = Icons.nights_stay;
   ThemeData _light =
-      ThemeData(accentColor: Colors.yellow, brightness: Brightness.light);
+      ThemeData(accentColor: Colors.orange, brightness: Brightness.dark);
   ThemeData _dark =
-      ThemeData(accentColor: Colors.yellow, brightness: Brightness.dark);
+      ThemeData(accentColor: Colors.orange, brightness: Brightness.light);
   getLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
     if (permission == LocationPermission.denied) {
@@ -43,6 +44,7 @@ class _SettingsState extends State<Settings> {
       theme: isChangeTheme ? _dark : _light,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        backgroundColor: Colors.orangeAccent,
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
@@ -137,7 +139,11 @@ class _SettingsState extends State<Settings> {
                               return Colors.orange;
                             }),
                             value: state,
-                            onChanged: (bool s) {
+                            onChanged: (bool s) async {
+                              // var box =
+                              //     await Hive.openBox('saveLocationOnDevice');
+                              // await box.put(bool, state);
+                              // await box.add(state);
                               setState(() {
                                 state = s;
                                 print(state);
