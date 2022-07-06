@@ -27,6 +27,12 @@ dependencies:
   geolocator: ^8.2.1
   google_maps_flutter: ^2.1.7
   shared_preferences: ^2.0.13
+
+
+  # To intercept user network and show if theres internet or not
+  internet_connection_checker: ^0.0.1+4
+  overlay_support: ^2.0.1
+  #To intercept user network and show if theres internet or not
   
 
 
