@@ -17,19 +17,26 @@ class _HomeState extends State<Home> {
   // final Completer<GoogleMapController> _controller = Completer();
   late GoogleMapController googleMapController;
 
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    googleMapController.dispose();
+    super.dispose();
+  }
+
   static const CameraPosition initialCameraPosition = CameraPosition(
-      target: LatLng(37.42796133580664, -122.085749655962), zoom: 14);
+      target: LatLng(37.42796133580664, -122.085749655962), zoom: 1);
 
   Set<Marker> markers = {};
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey,
+      backgroundColor: Colors.transparent,
       body: GoogleMap(
         initialCameraPosition: initialCameraPosition,
         markers: markers,
-        zoomControlsEnabled: false,
-        mapType: MapType.normal,
+        zoomControlsEnabled: true,
+        mapType: MapType.hybrid,
         onMapCreated: (GoogleMapController controller) {
           googleMapController = controller;
         },
@@ -49,7 +56,7 @@ class _HomeState extends State<Home> {
               position: LatLng(position.latitude, position.longitude)));
           setState(() {});
         },
-        label: const Text('Show my current location',
+        label: const Text('Find Me',
             style: TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
                 fontSize: 12,
@@ -60,6 +67,7 @@ class _HomeState extends State<Home> {
           color: Colors.white,
         ),
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
 

@@ -16,14 +16,14 @@ List<UnbordingContent> contents = [
           "industry's standard dummy text ever since the 1500s, "
           "when an unknown printer took a galley of type and scrambled it "),
   UnbordingContent(
-      title: 'Get Your Location Latitude And Longitude',
+      title: 'Find Out Your Current Latitude And Longitude',
       image: 'assets/phone_map.png',
       discription:
           "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the "
           "industry's standard dummy text ever since the 1500s, "
           "when an unknown printer took a galley of type and scrambled it "),
   UnbordingContent(
-      title: 'Dont Get Lost',
+      title: 'Dont Get Lost !',
       image: 'assets/mobile-phone.png',
       discription:
           "simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the "

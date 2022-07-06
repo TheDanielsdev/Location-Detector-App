@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:location_detector/pages/settings.dart';
 
@@ -24,12 +22,13 @@ class _MainScreenState extends State<MainScreen> {
           children: _pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
+            backgroundColor: Colors.orange,
             currentIndex: _index,
             selectedLabelStyle: const TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
                 fontSize: 12,
                 fontWeight: FontWeight.w700),
-            selectedItemColor: Colors.yellow,
+            selectedItemColor: Colors.white,
             unselectedLabelStyle: const TextStyle(
                 fontFamily: 'CerebriSansPro-Regular',
                 fontSize: 10,

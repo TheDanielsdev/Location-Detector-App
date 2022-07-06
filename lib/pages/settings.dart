@@ -46,14 +46,6 @@ class _SettingsState extends State<Settings> {
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.pop(context);
-              },
-              icon: Icon(
-                Icons.arrow_back_ios_new,
-                color: isChangeTheme ? Colors.white : Colors.black,
-              )),
           actions: [
             IconButton(
                 onPressed: () {
@@ -134,6 +126,16 @@ class _SettingsState extends State<Settings> {
                           ),
                         ),
                         Switch(
+                            activeTrackColor: Colors.orange,
+                            inactiveThumbColor: Colors.grey[800],
+                            thumbColor:
+                                MaterialStateProperty.resolveWith<Color>(
+                                    (states) {
+                              if (states.contains(MaterialState.disabled)) {
+                                return Colors.orange.withOpacity(.48);
+                              }
+                              return Colors.orange;
+                            }),
                             value: state,
                             onChanged: (bool s) {
                               setState(() {
@@ -190,7 +192,7 @@ class _SettingsState extends State<Settings> {
               const SizedBox(
                 height: 10,
               ),
-               Container(
+              Container(
                 alignment: Alignment.bottomCenter,
                 child: const Text('TheDaniels Team',
                     style: TextStyle(
