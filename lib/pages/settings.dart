@@ -1,9 +1,10 @@
-// ignore_for_file: deprecated_member_use
+// ignore_for_file: deprecated_member_use, prefer_typing_uninitialized_variables
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:location_detector/pages/home.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Settings extends StatefulWidget {
   Settings({Key? key}) : super(key: key);
@@ -13,14 +14,19 @@ class Settings extends StatefulWidget {
 }
 
 class _SettingsState extends State<Settings> {
+  //for sharedpreferences to save the state
+  static const switchKey = 'SwitchKey';
+  late bool changed = false;
+  //for sharedpreferences to save the state
+
   var lat, long;
-  bool state = false;
+  // bool state = false;
   bool isChangeTheme = false;
-  IconData _lightIcon = Icons.sunny;
-  IconData _darkIcon = Icons.nights_stay;
-  ThemeData _light =
+  final IconData _lightIcon = Icons.sunny;
+  final IconData _darkIcon = Icons.nights_stay;
+  final ThemeData _light =
       ThemeData(accentColor: Colors.orange, brightness: Brightness.dark);
-  ThemeData _dark =
+  final ThemeData _dark =
       ThemeData(accentColor: Colors.orange, brightness: Brightness.light);
   getLocation() async {
     LocationPermission permission = await Geolocator.checkPermission();
@@ -36,6 +42,27 @@ class _SettingsState extends State<Settings> {
         long = position.longitude;
       });
     }
+  }
+
+  @override
+  void initState() {
+    restoreFnc();
+    super.initState();
+  }
+
+//The first function to Read a value from persistent storage, using SharePrefernce, which I called above in the init state
+  void restoreFnc() async {
+    var preferences = await SharedPreferences.getInstance();
+    var changed = preferences.getBool(switchKey);
+    //this change variable (this.chnaged) is the same one I defined up above with: late bool changed
+    setState(() => this.changed = changed!);
+  }
+
+//The second function to save to persistent storage in the background using sharePreference.,
+  void persistFnc() async {
+    setState(() => changed = !changed);
+    var preferences = await SharedPreferences.getInstance();
+    preferences.setBool(switchKey, changed);
   }
 
   @override
@@ -87,8 +114,8 @@ class _SettingsState extends State<Settings> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: ListTile(
-                    title: state
-                        ? Text('',
+                    title: changed
+                        ? const Text('',
                             style: TextStyle(
                                 fontFamily: 'CerebriSansPro-Regular',
                                 color: Colors.black,
@@ -107,7 +134,7 @@ class _SettingsState extends State<Settings> {
                               horizontal: 10, vertical: 10),
                           child: Column(
                             children: [
-                              state
+                              changed
                                   ? Text('latitude: $lat',
                                       style: const TextStyle(
                                           fontFamily: 'CerebriSansPro-Regular',
@@ -117,7 +144,7 @@ class _SettingsState extends State<Settings> {
                               const SizedBox(
                                 height: 5,
                               ),
-                              state
+                              changed
                                   ? Text('longitude: $long',
                                       style: const TextStyle(
                                           fontFamily: 'CerebriSansPro-Regular',
@@ -138,21 +165,15 @@ class _SettingsState extends State<Settings> {
                               }
                               return Colors.orange;
                             }),
-                            value: state,
-                            onChanged: (bool s) async {
-                              // var box =
-                              //     await Hive.openBox('saveLocationOnDevice');
-                              // await box.put(bool, state);
-                              // await box.add(state);
+                            value: changed,
+                            onChanged: (bool s) {
+                              persistFnc();
+
                               setState(() {
-                                state = s;
-                                print(state);
+                                changed = s;
+                                print(changed);
                               });
-                              state == true ? getLocation() : null;
-                              // state == true
-                              //     ? Navigator.of(context).push(
-                              //         MaterialPageRoute(builder: (_) => Home()))
-                              //     : null;
+                              changed == true ? getLocation() : null;
                             }),
                       ],
                     )),
@@ -161,7 +182,7 @@ class _SettingsState extends State<Settings> {
                 height: 15,
               ),
               Padding(
-                padding: EdgeInsets.symmetric(horizontal: 0),
+                padding: const EdgeInsets.symmetric(horizontal: 0),
                 child: ListTile(
                     onTap: () {},
                     title: const Text('Privacy policy',

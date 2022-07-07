@@ -22,6 +22,7 @@ class _MainScreenState extends State<MainScreen> {
           children: _pages,
         ),
         bottomNavigationBar: BottomNavigationBar(
+            iconSize: 15,
             backgroundColor: Colors.orange,
             currentIndex: _index,
             selectedLabelStyle: const TextStyle(
@@ -46,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
               BottomNavigationBarItem(
                 icon: Icon(Icons.settings),
                 label: 'Settings',
-              )
+              ),
             ]));
   }
 }

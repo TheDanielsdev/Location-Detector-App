@@ -29,6 +29,7 @@ dependencies:
   shared_preferences: ^2.0.13
   hive: ^2.2.3
   hive_flutter: ^1.1.0
+  fluttertoast: ^8.0.9
 
 
   # To intercept user network and show if theres internet or not

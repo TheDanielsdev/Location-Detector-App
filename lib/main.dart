@@ -25,9 +25,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(primarySwatch: Colors.orange
-          // primarySwatch: ThemeData(C)
-          ),
+      theme: ThemeData.dark().copyWith(
+          colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.orange)),
       debugShowCheckedModeBanner: false,
       home: showHome ? MainScreen() : Onbording(),
       // initialRoute:
