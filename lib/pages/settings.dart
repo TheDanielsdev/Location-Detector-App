@@ -71,7 +71,7 @@ class _SettingsState extends State<Settings> {
       theme: isChangeTheme ? _dark : _light,
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: Colors.orangeAccent,
+        backgroundColor: const Color.fromARGB(255, 248, 191, 115),
         appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.transparent,

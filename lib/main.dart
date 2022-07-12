@@ -138,7 +138,7 @@ class _OnbordingState extends State<Onbording> {
                     //   left: 200,
                     //   bottom: 10,
                     // ),
-                    width: 100,
+                    width: 110,
                     // ignore: deprecated_member_use
                     child: FlatButton(
                       onPressed: () async {

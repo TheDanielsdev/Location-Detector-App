@@ -7,7 +7,10 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
+import 'package:location_detector/pages/tryagain.dart';
 import 'package:overlay_support/overlay_support.dart';
+
+// final map = Map<int, dynamic>()..addAll({0: 'dann'});
 
 class Home extends StatefulWidget {
   Home({
@@ -61,28 +64,32 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      body: GoogleMap(
-        initialCameraPosition: initialCameraPosition,
-        markers: markers,
-        zoomControlsEnabled: true,
-        mapType: MapType.hybrid,
-        onMapCreated: (GoogleMapController controller) {
-          googleMapController = controller;
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: _FindMeBtn, //the onPressed function
-        label: const Text('Find Me',
-            style: TextStyle(
-                fontFamily: 'CerebriSansPro-Regular',
-                fontSize: 12,
+      body: isInternetOn == true
+          ? GoogleMap(
+              initialCameraPosition: initialCameraPosition,
+              markers: markers,
+              zoomControlsEnabled: true,
+              mapType: MapType.hybrid,
+              onMapCreated: (GoogleMapController controller) {
+                googleMapController = controller;
+              },
+            )
+          : const TryAgainPage(),
+      floatingActionButton: isInternetOn == true
+          ? FloatingActionButton.extended(
+              onPressed: _FindMeBtn, //the onPressed function
+              label: const Text('Find Me',
+                  style: TextStyle(
+                      fontFamily: 'CerebriSansPro-Regular',
+                      fontSize: 12,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold)),
+              icon: const Icon(
+                Icons.location_history,
                 color: Colors.white,
-                fontWeight: FontWeight.bold)),
-        icon: const Icon(
-          Icons.location_history,
-          color: Colors.white,
-        ),
-      ),
+              ),
+            )
+          : null,
       floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
     );
   }
@@ -104,18 +111,19 @@ class _HomeState extends State<Home> {
   void _FindMeBtn() async {
     var hasInternet = await InternetConnectionChecker().hasConnection;
     if (hasInternet == true) {
-      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-        backgroundColor: Colors.green,
-        duration: Duration(seconds: 2),
-        content: Text(
-          'Connection established',
-          style: TextStyle(
-              fontFamily: 'CerebriSansPro-Regular',
-              fontSize: 10,
-              color: Colors.white,
-              fontWeight: FontWeight.bold),
-        ),
-      ));
+      // ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+      //   backgroundColor: Colors.green,
+      //   duration: Duration(seconds: 2),
+
+      //   content: Text(
+      //     'Connection established',
+      //     style: TextStyle(
+      //         fontFamily: 'CerebriSansPro-Regular',
+      //         fontSize: 10,
+      //         color: Colors.white,
+      //         fontWeight: FontWeight.bold),
+      //   ),
+      // ));
       Position position = await currentLocation();
       googleMapController.animateCamera(CameraUpdate.newCameraPosition(
           CameraPosition(
